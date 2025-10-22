@@ -255,6 +255,14 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
       final videoConnBlock =
           _canBeBlocked.value && stateGlobal.videoConnCount > 0;
       return Stack(children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/custom_background.png"),
+              fit: BoxFit.cover,
+          ),
+        ),
+      ),
         buildRemoteBlock(
           block: _block,
           mask: false,
@@ -266,6 +274,10 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
         ),
         if (videoConnBlock)
           Container(
+            decoration: BoxDecoration(
+            image: DecorationImage(
+            image: AssetImage("assets/custom_background.png"),
+            fit: BoxFit.cover,
             color: Colors.black.withOpacity(0.5),
           )
       ]);
