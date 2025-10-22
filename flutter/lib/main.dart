@@ -479,6 +479,16 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     // final analytics = FirebaseAnalytics.instance;
     final botToastBuilder = BotToastInit();
+    return Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/custom_background.png"),
+              fit: BoxFit.cover,
+        ),
+      ),
+    ),
+  );
     return RefreshWrapper(builder: (context) {
       return MultiProvider(
         providers: [
