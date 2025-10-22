@@ -278,6 +278,12 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: _buildBlock(
+        decoration: BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage("assets/custom_background.png"),
+        fit: BoxFit.cover,
+          ),
+        ),
         children: <Widget>[
           SizedBox(
             width: _kTabWidth,
