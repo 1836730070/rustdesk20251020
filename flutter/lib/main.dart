@@ -475,22 +475,19 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     stateGlobal.isPortrait.value = orientation == Orientation.portrait;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // final analytics = FirebaseAnalytics.instance;
-    final botToastBuilder = BotToastInit();
-    return Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/custom_background.png"),
-              fit: BoxFit.cover,
+@override
+Widget build(BuildContext context) {
+  // final analytics = FirebaseAnalytics.instance;
+  final botToastBuilder = BotToastInit();
+  return RefreshWrapper(builder: (context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/custom_background.png"),
+          fit: BoxFit.cover,
         ),
       ),
-    ),
-  );
-    return RefreshWrapper(builder: (context) {
-      return MultiProvider(
+      child: MultiProvider(
         providers: [
           // global configuration
           // use session related FFI when in remote control or file transfer page
@@ -547,9 +544,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                   }
                 },
         ),
-      );
-    });
-  }
+      ),
+    );
+  });
 }
 
 Widget _keepScaleBuilder(BuildContext context, Widget? child) {
