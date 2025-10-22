@@ -93,16 +93,24 @@ class _DesktopTabPageState extends State<DesktopTabPage> {
   Widget build(BuildContext context) {
     final tabWidget = Container(
         child: Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
-            body: DesktopTab(
-              controller: tabController,
-              tail: Offstage(
-                offstage: bind.isIncomingOnly() || bind.isDisableSettings(),
-                child: ActionIcon(
-                  message: 'Settings',
-                  icon: IconFont.menu,
-                  onTap: DesktopTabPage.onAddSetting,
-                  isClose: false,
+            backgroundColor: Colors.transparent, // 改为透明
+            body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/custom_background.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: DesktopTab(
+                controller: tabController,
+                tail: Offstage(
+                  offstage: bind.isIncomingOnly() || bind.isDisableSettings(),
+                  child: ActionIcon(
+                    message: 'Settings',
+                    icon: IconFont.menu,
+                    onTap: DesktopTabPage.onAddSetting,
+                    isClose: false,
+                  ),
                 ),
               ),
             )));
