@@ -91,29 +91,37 @@ class _DesktopTabPageState extends State<DesktopTabPage> {
 
   @override
   Widget build(BuildContext context) {
-    final tabWidget = Container(
+    // 创建带背景的 Scaffold
+    Widget buildScaffoldWithBackground() {
+      return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/custom_background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Scaffold(
-            backgroundColor: Colors.transparent, // 改为透明
-            body: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/custom_background.png"),
-                  fit: BoxFit.cover,
-                ),
+          backgroundColor: Colors.transparent,
+          body: DesktopTab(
+            controller: tabController,
+            tail: Offstage(
+              offstage: bind.isIncomingOnly() || bind.isDisableSettings(),
+              child: ActionIcon(
+                message: 'Settings',
+                icon: IconFont.menu,
+                onTap: DesktopTabPage.onAddSetting,
+                isClose: false,
               ),
-              child: DesktopTab(
-                controller: tabController,
-                tail: Offstage(
-                  offstage: bind.isIncomingOnly() || bind.isDisableSettings(),
-                  child: ActionIcon(
-                    message: 'Settings',
-                    icon: IconFont.menu,
-                    onTap: DesktopTabPage.onAddSetting,
-                    isClose: false,
-                  ),
-                ),
-              ),
-            )));
+            ),
+          ),
+        ),
+      );
+    }
+
+    final tabWidget = Container(
+      child: buildScaffoldWithBackground(),
+    );
+    
     return isMacOS || kUseCompatibleUiMode
         ? tabWidget
         : Obx(
