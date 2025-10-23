@@ -548,7 +548,7 @@ Widget build(BuildContext context) {
     );
   });
 }
-
+}
 Widget _keepScaleBuilder(BuildContext context, Widget? child) {
   return MediaQuery(
     data: MediaQuery.of(context).copyWith(
